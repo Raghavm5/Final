@@ -1,5 +1,5 @@
 pipeline {
-    agent none
+    agent any
     options {
         checkoutToSubdirectory('source')
     }
@@ -9,11 +9,10 @@ pipeline {
     }
     stages {
         stage ('Build') {
-            agent {
-              label 'build'
-            }
+            
+                      
             steps {
-                dir ('source') {
+                dir ('source/Hello-world-CICD-master') {
                     sh '''mvn -Dmaven.test.failure.ignore=true clean install
                           cp -R target/*.war ansible/hello-world.war'''
                 }
